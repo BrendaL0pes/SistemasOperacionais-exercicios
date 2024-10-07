@@ -1,0 +1,21 @@
+import threading
+
+def process_data(data):
+    for i in range(len(data)):
+        data[i] *= 2  # Exemplo de processamento de dados
+
+if __name__ == "__main__":
+    data = [1, 2, 3, 4]  # Simulando uma imagem
+    num_threads = 4
+    threads = []
+
+    for i in range(num_threads):
+        t = threading.Thread(target=process_data, args=(data,))
+        threads.append(t)
+        t.start()
+
+    for t in threads:
+        t.join()
+
+    print("Processed data:", data)
+
